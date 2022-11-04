@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - let results=[{App_Name:"Outlook",App_Company:"Outlook Cooperation",App_Size:301.8,App_Rating:4.2,App_Category:"Mail"},{App_Name:"You Tube",App_Company:"YouTube Co-operate",App_Size:320.6,App_Rating:4.5,App_Category:"Entertainment"},{App_Name:"linkedIN",App_Company:"linkedInCooperation",App_Size:301.8,App_Rating:4.2,App_Category:"scoial"}]
+  div(class="container-fluid")
+  div(class="row")
+  each value,index in results
+    div(class="col-sm-2" onclick=`buy(${index})`)  #{value.App_Name} Application, is a company #{value.App_Company}, with size #{value.App_Size}
+  script.
+    function buy(index)
+    {
+      alert(`Your purchased Item ${index+1}`)
+    }

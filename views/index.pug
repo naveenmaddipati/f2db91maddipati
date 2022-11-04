@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p i love playing cricket 
+  button(type="button", class="btn btn-success" onclick = "doBump()") Press Here
+  div#bump Bump the count
+
+  script.  
+    var count = 0
+    var bump = 1
+    function doBump() {
+      count = count + bump 
+      bump = bump + 1
+      document.getElementById("bump").innerHTML = "Count "+ count +" Bump "+bump;
+    }
