@@ -5,8 +5,7 @@
 Renderlink:https://f2db91maddipati.onrender.com
 
 
-### Class details
+### __class Name__ : Application
 
-Applicatin
-App_Name(String), App_Company(String), App_Size(number), App_Rating(number), App_Category(String)
+__Attributes__ : *App_Name(String), App_Company(String), App_Size(number), App_Rating(number), App_Category(String)*
 
