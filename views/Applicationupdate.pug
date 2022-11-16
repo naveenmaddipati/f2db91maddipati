@@ -1,0 +1,44 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  
+  - let App_Name = toShow.App_Name 
+  - let App_Company = toShow.App_Company
+  - let App_Size = toShow.App_Size
+  - let App_Rating = toShow._id
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{App_Rating} 
+  - let actionid = "/resource/Application/" + App_Rating 
+  form(id='ApplicationForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.ApplicationAttr(for='App_Name') Application App_Name 
+        input#App_Name(type='text', name='App_Name', value= App_Name ) 
+    div.form-group 
+        label.ApplicationAttr(for='App_Company') Application App_Company
+        input#App_Company(type='text', name='App_Company', value= App_Company ) 
+    div.form-group 
+        label.ApplicationAttr(for='App_Size') Application App_Size 
+        input#App_Size(type='number', name='App_Size', value= App_Size) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['ApplicationForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 

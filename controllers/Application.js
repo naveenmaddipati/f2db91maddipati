@@ -46,9 +46,17 @@ exports.Application_create_post = async function (req, res) {
     }
 };
 // Handle Application delete form on DELETE.
-exports.Application_delete = function (req, res) {
-    res.send('NOT IMPLEMENTED: Application delete DELETE ' + req.params.id);
-};
+exports.Application_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Application.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
 // Handle Application update form on PUT.
 exports.Application_update_put = function (req, res) {
     res.send('NOT IMPLEMENTED: Application update PUT' + req.params.id);
@@ -82,3 +90,72 @@ ${JSON.stringify(req.body)}`)
 failed`); 
     } 
 }; 
+// Handle a show one view with id specified by query 
+exports.Application_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Application.findById( req.query.id) 
+        res.render('Applicationdetail',  
+{ title: 'Application Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+// Handle a show one view with id specified by query 
+exports.Application_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Application.findById( req.query.id) 
+        res.render('Applicationdetail',  
+{ title: 'Application Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+ // Handle building the view for creating a Application. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.Application_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('Applicationcreate', { title: 'Application Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+// Handle building the view for updating a Application. 
+// query provides the id 
+exports.Application_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await Application.findById(req.query.id) 
+        res.render('Applicationupdate', { title: 'Application Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+// Handle a delete one view with id from query 
+exports.Application_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await Application.findById(req.query.id) 
+        res.render('Applicationdelete', { title: 'Application Delete', toShow: 
+result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+ 
+ 

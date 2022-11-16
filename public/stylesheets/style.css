@@ -4,5 +4,25 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #5500ff;
+}
+
+b{
+    padding-left: 545px;
+}
+.c{
+  padding-left: 500px;
+}
+.ApplicationAttr { 
+  background-color: rgb(182, 127, 255); 
+  width: 120px; 
+  text-shadow: 2px 2px #13b5a7 ;
+} 
+.d {
+ text-align: center;
+ padding: 10px;
+ background-color: rgb(56, 237, 128);
+}
+.e {
+background-color: rgba(237, 32, 56, 0.863);
 }

@@ -1,0 +1,36 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  form(id='ApplicationForm', action="/resource/Application", method="POST" ,class='d') 
+    div(class='d').form-group
+        img(src='/images/whatsapp.png' width="100px" height:)
+    div.form-group 
+        label.ApplicationAttr(for='App_Name') App_Name
+        input#Application_type(type='text', name='App_Name') 
+    div.form-group 
+        label.ApplicationAttr(for='App_Company') App_Company
+        input#size(type='text', name='App_Company') 
+    div.form-group 
+        label.ApplicationAttr(for='App_size') App_size 
+        input#cost(type='number', name='App_size') 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['ApplicationForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target))  
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    }); 

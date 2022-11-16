@@ -1,0 +1,54 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let Applicationid = toShow._id 
+    - let App_Name= toShow.App_Name
+    - let ApplicationApp_company = toShow.App_company 
+    - let ApplicationApp_size = toShow.App_size 
+    - let actionid = "/resource/Application/" + Applicationid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='ApplicationAttr mr-3') Application ID is: 
+        div #{Applicationid} 
+      div.row 
+        div(class='ApplicationAttr mr-3') Application App_Name is: 
+        div #{App_Name} 
+      div.row 
+        div(class='ApplicationAttr mr-3') Application App_company is: 
+        div #{ApplicationApp_company} 
+      div.row 
+        div(class='ApplicationAttr mr-3') Application App_size is: 
+        div #{ApplicationApp_size} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the Application collection 
+      window.location.href='/Applications' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      //Dont need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/Applications' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 
+    
