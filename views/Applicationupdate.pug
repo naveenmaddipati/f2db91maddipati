@@ -3,7 +3,9 @@ extends layout
 block content 
   h1= title 
  
-  
+  if (toShow == null) 
+    h2 No instance to Update
+  else
   - let App_Name = toShow.App_Name 
   - let App_Company = toShow.App_Company
   - let App_Size = toShow.App_Size
