@@ -2,14 +2,21 @@ extends layout
 
 block content
   h1= title
+   - let destinationcreate = `dispatch(\"/Applications/create\")`
+    button.btn(class="btn-primary ml-1",style="width:500px" onclick= destinationcreate) Create
   - var results = App_Results
   div(class="container-fluid") 
     div(class="row m-1")
         each item, index in results
-            - let destination = `dispatch(\"/Application/update?id=${item._id}\")` 
+            - let destination = `dispatch(\"/Applications/update?id=${item._id}\")` 
+            - let destinationupdate = `dispatch(\"/Applications/update?id=${item._id}\")` 
+            - let destinationdelete = `dispatch(\"/Applications/delete?id=${item._id}\")` 
+            - let destinationdetail = `dispatch(\"/Applications/detail?id=${item._id}\")` 
             div(class="row-sm-2", class="m-1")(onclick=`buy(${index})`) Application Name: #{item["App_Name"]} <br> Application Company: #{item["App_Company"]} <br> Application Size: #{item["App_Size"]} <br> Application Rating: #{item["App_Rating"]} <br> Application Category: #{item["App_Category"]}
-            button.btn(class="btn-primary ml-1",style="width:500px" onclick= destination) Update 
-
+            
+            button.btn(class="btn-primary ml-1",style="width:500px" onclick= destinationdelete) Delete
+            button.btn(class="btn-primary ml-1",style="width:500px" onclick= destinationdetail) Detail 
+            button.btn(class="btn-primary ml-1",style="width:500px" onclick= destinationupdate) Update 
   script.
     function buy(index) {
       alert("You purchased item " + index)

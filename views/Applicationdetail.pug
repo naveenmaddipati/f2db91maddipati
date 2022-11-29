@@ -1,24 +1,25 @@
-extends layout 
- 
-block content 
-  h1= title 
- if (toShow == null) 
-    h2 No instance to Update
+extends layout
+
+block content
+ h1= title
+
+  if (toShow==null)
+   h2 No Instance to detail
   else
-  - let Applicationid = toShow._id 
-  - let App_Name = toShow.App_Name 
-  - let App_company = toShow.App_company
-  - let App_size = toShow.App_size
-  div 
+   - let App_id = toShow._id 
+   - let App_Name = toShow.App_Name 
+   - let App_Company = toShow.App_Company 
+   - let App_Rating= toShow.App_Rating
+    div 
     div.row 
-      div(class='ApplicationAttr mr-3') Application ID is: 
-      div #{Applicationid} 
+      div(class='ApplicationAttr mr-3') App ID is: 
+      div #{App_id} 
     div.row 
-      div(class='ApplicationAttr mr-3') Application App_Name is: 
+      div(class='ApplicationAttr mr-3') App nameis: 
       div #{App_Name} 
     div.row 
-      div(class='ApplicationAttr mr-3') Application App_company is: 
-      div #{App_company} 
+      div(class='ApplicationAttr mr-3') App company is: 
+      div #{App_Company} 
     div.row 
-      div(class='ApplicationAttr mr-3') Application App_size is: 
-      div #{App_size} 
+      div(class='ApplicationAttr mr-3') App Rating is: 
+      div #{App_Rating} 
